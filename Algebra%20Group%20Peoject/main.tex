@@ -1,0 +1,496 @@
+ \documentclass[notes]{beamer}
+%\documentclass{beamer}  will only print the powerpoint
+%\documentclass[notes=only]{beamer} will only print the notes
+\usepackage[siunitx,europeanresistors,americaninductors]{circuitikz}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{wrapfig}
+\usepackage{blindtext}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage[center]{caption}
+\usetheme{Goettingen}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{itemize items}[circle]
+\usepackage{amsfonts}
+\usepackage{resizegather}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+
+\title{Eigenpictures: Group Project}
+\author{Katie Bibby, Andrea Lhotská, Teresa Matamoro Zatarain, Yanyu Zhou}
+\institute{The University of Edinburgh}
+\date{March 2019}
+
+\begin{document}
+
+
+\frame{\titlepage}
+ 
+\section{Introducing Eigenpictures}
+\begin{frame}
+\frametitle{What are eigenpictures?}
+$A=\begin{pmatrix}
+2 & 1 \\
+0 & 1 
+\end{pmatrix}$
+\begin{figure}
+    \centering
+    \includegraphics[width=8.5cm]{"eigenpicture"}
+    \caption{The eigenpicture of A}
+\end{figure}
+
+
+\note{In our project we looked at the eigenpictures of 2x2 matrixes, such as this matrix A. The eigenpicture can be used to reveal many useful things about A.
+
+The first section of our presentation explains how such an eigenpicture is built up and what the different vectors mean. In the second section, we look at the eigenpictures of various special matrices, such as diagonal or invertible matrices. Finally, we discuss the elliptic shape of the eigenpicture, and when this arises.}
+\end{frame}
+
+
+
+\begin{frame}{Step 1: The Basic Eigenpicture}
+For a matrix $A$, compute:
+\begin{itemize}
+    \item unit vectors $\vec{v_i}$ 
+    \item translated vectors $A\vec{v_i}$
+\end{itemize}
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{"basic eigenpicture"}
+    \caption{The basic eigenpicture of A}
+\end{figure}
+
+
+\note{The first step in creating the eigenpicture of A is to graph the real unit vectors $\vec{v_i}$ pointing out from the origin. These will be the same for every matrix. We can then compute the vectors $A\vec{v_i}$ and graph them as pointing out from the tips of the unit vectors. This shows us what impact our matrix A has on the unit vectors and how it stretches them. In most cases, this gives us an elliptical shape, but we will also see cases where it does not.}
+\end{frame}
+
+
+
+\begin{frame}{Step 2: The Eigenvectors}
+Next, compute:
+\begin{itemize}
+    \item normalised eigenvectors $\vec{e_i}$ of $A$
+    \item translated eigenvectors $A\vec{e_i}$
+\end{itemize}
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{"evecs"}
+    \caption{The eigenvectors of A}
+\end{figure}
+
+    
+\note{The second step is to compute the eigenvalues and eigenvectors. We graph the unit eigenvectors $\vec{e_i}$ pointing out from the origin. We also compute the vectors $A\vec{e_i}$, and plot these on our graph pointing out from the tips of the eigenvectors. 
+
+We can notice that the length of $A\vec{e_i}$ for a $\vec{e_i}$ is equal to it's corresponding eigenvalue $\lambda_i$ since $A\vec{e_i}$ =  $\lambda_i\vec{e_i}$ and since $\vec{e_i}$ has length of 1, then the length of $A\vec{e_i}$ is equal to $\lambda_i$.
+
+For the matrix which we are using as an example, this is what the eigenvectors and translated eigenvectors multiplied by $A$ look like.
+By using pythagoras, we can see that the lengths of $A\vec{e_i}$ are 1 and 2, which are the eigenvalues of matrix $A$!
+}
+\end{frame}
+
+
+
+\begin{frame}{Step 3: The Singular Value Decomposition}
+Next, compute:
+\begin{itemize}
+    \item singular vectors $\vec{s_i}$ of $A$ (given by the eigenvectors of $A A^T$)
+    \item translated singular vectors $A\vec{s_i}$
+\end{itemize}
+\begin{figure}
+\centering
+\includegraphics[width=8cm]{"singvecs"}
+\caption{The singular vectors of A}
+\end{figure}
+ 
+    
+\note{The final part of our eigenpicture is the singular value decomposition. We need to calculate and plot the singular vectors of $A$, as well as the singular vectors translated and multiplied by $A$.
+
+To find the singular vectors of $A$, we first need to multiply $A$ by its transpose $ A^T $, and find the eigenvalues of this new matrix. The square roots of these eigenvalues will give us the singular values. Then the eigenvectors of $A A^T$ will be the singular vectors of $A$, which we are interested in plotting.
+
+For the matrix $A$ which we have been using as an example, you can see the plot of the  singular vectors over here.
+
+The singular vectors are the two vectors which are stretched the most and the least by $A$. On this diagram here, we can see that the vector pointing towards the left is stretched the least, and the vector on the right is stretched the most.  \cite{datascience}
+
+The singular vectors are always orthogonal to each other and the angle between them is $\frac{\pi}{2}$. 
+}
+\end{frame}
+
+
+
+\begin{frame}{Step 4: The Complete Eigenpicture}
+Combining steps 1-3 we have:    
+\begin{itemize}
+\item eigenvectors of $A$ in red
+\item singular vectors in black
+\item unit vectors in rainbow
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=8cm]{"eigenpicture"}
+\caption{The complete eigenpicture of A}
+\end{figure}
+
+
+\note{Combining these three parts together, we have the complete eigenpicture. The inner circle shows the unit vectors in rainbow, the eigenvectors of $A$ in red, and the singular vectors of $A$ in black. Pointing out from the unit circle we have the vectors gained from multiplying the inner circle vectors by $A$. 
+
+What can we observe from this eigenpicture?
+%https://mathinsight.org/determinant_linear_transformation
+First notice that the red (the eigenvectors) and the black (the singular vectors) overlap the rainbow (the vectors  $\vec{v}+ A\vec{v}$), this is because the singular and the eigenvectors are both unit vectors and then we multiplied them by A and translated them (which is how we created the basic eigenpicture). 
+The eigenvectors occur when a unit vector is collinear to  $A$ multiplied by that unit vector.  This is logical since eigenvectors occur when $A\vec{v}$ is equal to a scalar multiple of $\vec{v}$.
+
+The multiplied and translated singular vectors end on the major and minor axis of the ellipse. These correspond to the maximum and minimum singular values of A, respectively.}
+\end{frame}
+
+
+
+\section{Eigenpictures of Diagonal Matrices}
+\begin{frame}{Eigenpictures of Diagonal Matrices}
+ \begin{figure} [!htb]
+    \centering
+    \hfill
+    \centerline{\begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=3.5cm]{"diag -4 0 0 -5"}
+        \caption{The eigenpicture of 
+        $\begin{pmatrix}
+        4 & 0 \\
+        0 & -5 
+        \end{pmatrix}$}
+    \end{minipage}
+        \hspace{0.1}
+    \begin{minipage}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=5.5cm]{"diag 4 0 0 2"}
+        \caption{The eigenpicture of  $\begin{pmatrix}
+        4 & 0 \\
+        0 & 2 
+        \end{pmatrix}$}
+    \end{minipage}}
+\end{figure}
+    
+\note{The next part of our project focused on investigating the particular features of eigenpictures for different special matrices, such as diagonal, symmetric or invertible matrices.
+
+Here are two examples of eigenpictures of diagonal matrices. We can immediately see that both the eigenvectors and the singular vectors are the standard basis vectors for $\mathbb{R}^2$. This was true for all the diagonal matrices that we tested.}
+\end{frame}
+
+
+
+\begin{frame}{Explaining Eigenpictures of Diagonal Matrices}
+\begin{itemize}
+\item A diagonal matrix $D = \begin{pmatrix}
+    a & 0 \\
+    0 & b
+    \end{pmatrix}$
+\item Characteristic polynomial: $(a - \lambda )(b - \lambda)$
+\item Eigenvalues: $a, b$
+\item Eigenvectors: $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$,$\begin{pmatrix} 0 \\ 1 \end{pmatrix}$ 
+\item $D D^T = \begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}$$\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}$ = $ \begin{pmatrix} a^2 & 0 \\ 0 & b^2 
+    \end{pmatrix}$
+\item Eigenvalues of $D D^T$: $a^2, b^2$
+\item Singular values: $a, b$
+\item Singular vectors: $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$,$\begin{pmatrix} 0 \\ 1 \end{pmatrix}$ 
+\end{itemize}
+
+
+\note{Let's now confirm these intuitions algebraically. 
+
+D is an arbitrary 2x2 diagonal matrix. The characteristic polynomial of D is given by $(a - \lambda )(b - \lambda)$, and if we solve the characteristic polynomial for lambda, we can show that $a$ and $b$ are the eigenvalues of $D$. It is then easy to see that the eigenvectors are exactly the standard basis vectors for $\mathbb{R}^2$.
+
+To find the singular vectors, we calculate D right-multiplied by its transpose, which is also a diagonal matrix with $a^2$ and $b^2$ as its diagonal entries. The eigenvalues of $D D^T$ are $a^2$ and $b^2$, and the square roots of these eigenvalues are the singular values, which are again $a$ and $b$. The singular vectors will then be the eigenvectors of $D D^T$, which are again the the standard basis vectors, since $D D^T$ is also diagonal. }
+\end{frame}
+
+
+
+
+\section{Eigenpictures of Jordan Matrices}
+\begin{frame}{Eigenpictures of Jordan Matrices}
+ \begin{figure} [!htb]
+    \centering
+    \hfill
+    \centerline{\begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=3.5cm]{"2 1 0 3"}
+        \caption{The eigenpicture of 
+        $\begin{pmatrix}
+        2 & 1 \\
+        0 & 3 
+        \end{pmatrix}$}
+    \end{minipage}
+        \hspace{0.1}
+    \begin{minipage}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=5.5cm]{"2 1 0 2"}
+        \caption{The eigenpicture of  $\begin{pmatrix}
+        2 & 1 \\
+        0 & 2 
+        \end{pmatrix}$}
+    \end{minipage}}
+\end{figure}
+    
+\note{Similar to diagonal matrices, we have Jordan matrices, where the 2 diagonal entries are the eigenvalues of the matrix. There are 2 forms of a Jordan matrix, the first is the normal form where the 2 eigenvalues of the matrix are distinct and there is the Jordan block, where every eigenvalue is equal. As we can see, they both have an eigenvector $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$.}
+\end{frame}
+
+
+\begin{frame}{Explaining Eigenpictures of Jordan Matrices}
+\begin{itemize}
+\item Jordan normal matrix \cite{Notes} : $\begin{pmatrix}
+\lambda_1 & 1\\
+0 & \lambda_2
+\end{pmatrix}$
+\item Eigenvector:  $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$
+$$\begin{pmatrix}
+\lambda_1 & 1\\
+0 & \lambda_2
+\end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \lambda_1 \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} \Rightarrow \begin{pmatrix} \lambda_1 v_1 +v_2 \\ \lambda_2 v_2\end{pmatrix} = \begin{pmatrix} \lambda_1 v_1 \\ \lambda_1 v_2 \end{pmatrix}$$
+$$\Rightarrow \lambda_1 v_1 +v_2 = \lambda_1 v_1 \Rightarrow v_1 = 1,  v_2 = 0 $$
+\item Jordan block : $\begin{pmatrix}
+\lambda & 1\\
+0 & \lambda 
+\end{pmatrix}$
+\end{itemize}
+
+
+\note{ 
+So why is $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$ always an eigenvector for a Jordan matrix?
+
+The reason for this is very similar to diagonal matrices.
+We can show this algebraically:
+First note that this eigenvector corresponds to $\lambda_1.$
+
+By using the definition of an eigenvector, we can multiply the Jordan matrix by the an eigenvector with entries $v_1$ and $v_2$. The top rows must equal so we can then solve for $v_1$ and $v_2$ and we get $v_1=1$ and $v_2=0$.
+For a Jordan block matrix, $\lambda_1 = \lambda_2$, when this is subbed into the equation, it is clear that there is only one eigenvector.
+}
+\end{frame}
+
+
+
+\section{Eigenpictures of Symmetric Matrices}
+\begin{frame}{Eigenpictures of Symmetric Matrices}
+ \begin{figure} [!htb]
+    \centering
+    \hfill
+    \centerline{\begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=3.5cm]{"sym 2 1 1 3"}
+        \caption{The eigenpicture of 
+        $\begin{pmatrix}
+        2 & 1 \\
+        1 & 3 
+        \end{pmatrix}$}
+    \end{minipage}
+        \hspace{0.1}
+    \begin{minipage}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=5.5cm]{"sym -5 2 2 0"}
+        \caption{The eigenpicture of  $\begin{pmatrix}
+        -5 & 2 \\
+        2 & 0 
+        \end{pmatrix}$}
+    \end{minipage}}
+\end{figure}
+
+
+\note{Here are two eigenpictures of randomly chosen symmetric matrices. One thing that we notice about these is the fact that distinct eigenvectors are orthogonal to each other, and so are the singular vectors. Additionally, the singular vectors always seem to point in the same or exact opposite direction as the eigenvectors. }
+\end{frame}
+
+
+
+\begin{frame}{Explaining Eigenpictures of Symmetric Matrices}
+\begin{itemize}
+    \item Symmetric matrix: $S=S^T$
+    \item For eigenvectors $\vec{e_1}$, $\vec{e_2}$ with eigenvalues $\lambda_1$, $\lambda_2$, $A\vec{e_1}=\lambda_1 \vec{e_1}$ and $A\vec{e_2}=\lambda_2 \vec{e_2}$
+    \item look at $\vec{e_1} \cdot \vec{e_2}$:
+    \begin{gather*}
+    \lambda_1 (\vec{e_1} \cdot \vec{e_2}) = \lambda_1 \vec{e_1} \cdot \vec{e_2} = A \vec{e_1} \cdot \vec{e_2} = (A \vec{e_1})^T \cdot \vec{e_2} = \vec{e_1}^T A^T \vec{e_2} \\
+    = \vec{e_1}^T A \vec{e_2} = \vec{e_1}^T \lambda_2 \vec{e_2} = \lambda_2 \vec{e_1}^T \vec{e_2} = \lambda_2 (\vec{e_1} \cdot \vec{e_1})
+    \end{gather*}
+    \item So for $\lambda_1 \neq \lambda_2$, we have $\vec{e_1},\vec{e_2}$ orthogonal
+    \item For symmetric matrices, singular values are the absolute values of the eigenvalues \cite{berk}
+\end{itemize}
+   
+ 
+\note{Let's again confirm these observations algebraically. 
+We can use the fact that a symmetric matrix is equal to its transpose to prove that its distinct eigenvectors are orthogonal. We look at the dot product of the two eigenvectors multiplied by the first eigenvalue. 
+
+(here I would walk the audience through the equation, showing that $\lambda_1 (\vec{e_1} . \vec{e_2}) =\lambda_2 (\vec{e_1}.\vec{e_1})$ )
+
+Therefore if the two eigenvalues are distinct, we have the dot product of the eigenvectors equal to zero, and so the eigenvectors are orthogonal to each other.
+
+For symmetric matrices, it is provable that the singular values are the absolute values of the eigenvalues. From this it will follow that the singular vectors will be the absolute values of the eigenvectors, and so the eigenvectors point in the same or opposite direction as the singular vectors. Since distinct eigenvectors were orthogonal, distinct singular vectors will also be orthogonal. 
+
+This confirms our observations from the eigenpictures.}
+\end{frame}
+
+
+
+\section{Eigenpictures of Invertible Matrices}
+\begin{frame}{Eigenpictures of Invertible Matrices}
+ \begin{figure} [!htb]
+    \centering
+    \hfill
+    \centerline{\begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=5cm]{"2 1 0 1"}
+        \caption{The eigenpicture of 
+        $\begin{pmatrix}
+        2 & 1 \\
+        0 & 1 
+        \end{pmatrix}$}
+    \end{minipage}
+        \hspace{0.1}
+    \begin{minipage}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=4cm]{"inv 2 1 0 1"}
+        \caption{The eigenpicture of $\begin{pmatrix}
+        2 & 1 \\
+        0 & 1 
+        \end{pmatrix}^{-1} = \begin{pmatrix}
+        \frac{1}{2} & -\frac{1}{2}  \\
+        0 & 1 
+        \end{pmatrix} $}
+    \end{minipage}}
+\end{figure}
+
+
+\note{ As we can see from the eigenpictures, the  original matrix and the inverse have the same eigenvectors. 
+
+Additionally, the angle between the translated singular vectors of $A$ is the same as the angle between the translated singular vectors of $A^{-1}$. 
+
+We'll only look at the first result algebraically - we confirmed the second result by writing code which computes the angle, and testing a number of random matrices.}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{Explaining Eigenpictures of Invertible Matrices}
+\begin{itemize}
+    \item For $A= \begin{pmatrix}
+    a & b\\
+    c & d 
+    \end{pmatrix}$, $ A^{-1}= \frac{1}{ad-bc}\begin{pmatrix}
+    d & -b\\
+    -c & a
+    \end{pmatrix}$
+    \item The eigenvalues of A are $\lambda = \frac{(a+d) \pm \sqrt{(a+d)^2-4(ad-bc)}}{2}$
+    \item $A \vec{e}&=\lambda \vec{e} \Rightarrow \vec{e}&=\lambda A^{-1}\vec{e} \Rightarrow A^{-1}\vec{e}&=\frac{1}{\lambda}\vec{e}  $
+    \item $\big{(}A^{-1}\big{)}^TA^{-1} = \big{(}\frac{1}{ad-bc}\big{)}^2\begin{pmatrix}
+    d & -c\\
+    -b & a
+    \end{pmatrix}
+    \begin{pmatrix}
+    d & -b \\
+    -c & a 
+    \end{pmatrix}$ \\ 
+    \hspace{19mm} $=  \big{(}\frac{1}{ad-bc}\big{)}^2 \begin{pmatrix}
+    d^2+c^2& -bd-ca \\
+    -bd-ca & b^2+a^2 
+    \end{pmatrix}$
+    \item Singular values of $A^{-1}$ : \begin{gather*}
+    \resizebox{.001 \textwidth}{!} 
+    \sqrt{\lambda}=\sqrt{ \bigg{(}\frac{1}{ad-bc}\bigg{)}^2\bigg{(}\frac{(d^2+c^2)(b^2+a^2) \pm \sqrt{((d^2+c^2)(a^2+b^2)^2)-4(ad-cb)^2}}{2}\bigg{)}}
+    \end{gather*}
+\end{itemize}
+
+
+\note{Let's now look at the eigenvectors of a matrix $A$ and its inverse. The characteristic polynomial of $A$ will give the $eigenvalues$ $\lambda_1$ and $\lambda_2$.
+The inverse of $A$ will be $ A^{-1}$. The $eigenvalues$ of the inverse matrix will be given by $\frac{1}{\lambda_1}$ and $\frac{1}{\lambda_2}.$ 
+
+By definition, we have $A \vec{e}&=\lambda \vec{e}$. Multiplying it by $A^{-1}$ from the left, and then dividing through by $\lambda$, it shows that the $eigenvectors$ for both $A$ and $A^{-1}$ are the same, which is what we can see from the pictures.
+
+The singular values of $A^{-1}$ are the square roots of the $eigenvalues$ of $ (A^{-1})^TA^{-1}$. 
+
+The singular vectors are the corresponding eigenvectors to the singular values.
+These vectors differ from those obtained for the original matrix.}
+\end{frame}
+
+
+
+
+
+
+\section{Other interesting features of Eigenpictures}
+\begin{frame}{Other interesting features of Eigenpictures}
+There are 3 formations from $\vec{v} +A\vec{v}$ :    
+\begin{itemize}
+    \item an ellipse
+    \item a line 
+    \item a point
+\end{itemize}
+ \begin{figure} [!htb]
+    \centering
+    \hfill
+    \centerline{\begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=4cm]{"0 1 1 0"}
+        \caption{The eigenpicture of 
+        $\begin{pmatrix}
+        0 & 1 \\
+        1 & 0 
+        \end{pmatrix}$}
+    \end{minipage}
+        \hspace{0.1}
+    \begin{minipage}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=4cm]{"-1 0 0 -1"}
+        \caption{The eigenpicture 
+        of
+        $\begin{pmatrix}
+        -1 & 0 \\
+        0 & -1 
+        \end{pmatrix}$}
+    \end{minipage}}
+\end{figure}
+\note{Although nearly all the translated vectors $v +Av$ form an ellipse, there are exceptions.
+
+For the matrix $\begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+        \end{pmatrix}$ the translated unit vectors map to a straight line through the origin. 
+        
+For the matrix $\begin{pmatrix}
+        -1 & 0 \\
+        0 & -1 
+        \end{pmatrix}$ they map to a point at (0,0).
+
+
+When there is an eigenvalue of -1, then they map to a line. This is because $A\vec{v}$ has equal length but opposite direction to the eigenvector $\vec{v}$, so maps to the point (0,0). An ellipse centered at (0,0) cannot go through the point (0,0), so the ellipse is stretched out to a line.
+
+When there are 2 eigenvalues of value -1, then both eigenvectors are the opposite of $A\vec{v} $ and so end at the origin. A straight line cannot have 2 points that are at the origin, therefore all of the translated unit vectors must map to a point at the origin.
+}
+\end{frame}
+
+
+
+\section{Summary}
+\begin{frame}
+    \begin{center}
+  \Huge  Thank you!
+    \end{center}
+    
+    \note{Overall, in this project we saw that eigenpictures can be very useful in visualising matrices. We saw that different categories of matrices have unique features in their eigenpictures, and we also saw cases when the usual elliptical shape of the eigenpicture is no longer elliptical.
+    
+    Thank you for listening/watching!}
+    
+\end{frame}
+
+\section{Bibliography}
+\begin{frame}{Bibliography}
+\begin{thebibliography}{}
+    \bibitem{berk} \textit{Notes on Singular Value Decomposition} [Online]. University of California, Berkley. Available at: \url{https://math.berkeley.edu/~hutching/teach/54-2017/svd-notes.pdf} [Accessed: 01.04.2020].
+
+    \bibitem{zizler}{} \textit{Eigenpictures and Singular Values of a Matrix.}
+    Zizler, P. & Frase, H.. The College Mathematics Journal, 28(1), 1997, pp.59–62. [Accessed: 03.04.2020].
+
+    \bibitem{Notes}{} \textit{Honours Algebra Notes.} Gordon, I. , Gratwick, R., Hering, M., Nemes, G. & Ranicki, A.. The University of Edinburgh, 2018-19. [Accessed: 04.04.2020].
+    
+    \bibitem{datascience} \textit{Understanding Singular Value Decomposition and its Application in Data Science} [Online]. Bagheri, R.. Towards Data Science, Jan. 9th 2020. Available at: \url{https://towardsdatascience.com/understanding-singular-value-decomposition-and} \url{-its-application-in-data-science-388a54be95d}.
+\end{thebibliography}
+\end{frame}
+
+\end{document}
