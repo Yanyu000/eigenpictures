@@ -1,5 +1,5 @@
 # eigenpicutres
-Group project of Honours Algebra at University of Edinburgh
+Group project of *Honours Algebra* at University of Edinburgh
 
 collaborators: Katie Bibby (s1731437), Andrea Lhotská (s1612804), Teresa Matamoro Zatarain (s1719611), Yanyu Zhou (s2032537)
 
