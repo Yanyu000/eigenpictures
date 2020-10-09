@@ -1,7 +1,7 @@
 # eigenpicutres
 Group project of Honours Algebra at University of Edinburgh
 
-Contributor: Katie Bibby (s1731437), Andrea Lhotská (s1612804), Teresa Matamoro Zatarain (s1719611), Yanyu Zhou (s2032537)
+collaborators: Katie Bibby (s1731437), Andrea Lhotská (s1612804), Teresa Matamoro Zatarain (s1719611), Yanyu Zhou (s2032537)
 
 In this project, we visualise linear maps using "eigenpictures". We compute the four basic tasks and then investigate eigenpictures further.
 
